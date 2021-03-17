@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Post.associate = function(models) {
     // associations can be defined here
+    // many side
+    Post.belongsTo(models.User, {foreignKey: 'userId'})
+    Post.belongsTo(models.Subbreaddit, {foreignKey: 'subbreadditId'})
   };
   return Post;
 };
