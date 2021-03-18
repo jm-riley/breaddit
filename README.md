@@ -1,5 +1,5 @@
 # Breaddit
-### Getting Setup Locally
+### Getting Set Up Locally
 1. `git clone`
 2. in psql: `CREATE USER breaddit WITH password 'strongPassword' CREATEDB;`
 3. in project directory: `npm install`
