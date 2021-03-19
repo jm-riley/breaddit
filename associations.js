@@ -9,10 +9,10 @@ const getUserWithPosts = async (id) => {
 
   // eager loading
   // fetching user and associated posts
-  const userWithPosts = await User.findByPk(id, {
-    include: Post
-  })
-  console.log(userWithPosts.toJSON())
+  // const userWithPosts = await User.findByPk(id, {
+  //   include: Post
+  // })
+  // console.log(userWithPosts.toJSON())
 
   // fetch user, their posts, and each posts subbreaddit
   const userPostsAndSubs = await User.findByPk(id, {
