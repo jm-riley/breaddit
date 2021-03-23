@@ -21,6 +21,15 @@ app.get('/subbreaddits', async (req, res) => {
   res.render('subbreaddits', { subbreaddits, title: 'subbreaddits' })
 })
 
+app.get('/subbreaddits/:id', async (req, res) => {
+  // req.params => {id: 3}
+  const sub = await Subbreaddit.findByPk(req.params.id, {
+    include: Post
+  })
+  // sub => {id: 1, name: 'jokes', Posts: [{id: 1, body: 'great joke'}]}
+  res.render('subbreaddit', {sub})
+})
+
 app.get('/', (req, res) => {
   // this will never run
   res.send('second index route')
