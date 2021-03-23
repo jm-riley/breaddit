@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const {Post, User} = require('./models')
+const {Post, User, Subbreaddit} = require('./models')
 
 app.set('view engine', 'pug')
 
@@ -12,7 +12,13 @@ app.get('/', async (req, res) => {
   } catch (e) {
     console.log(e)
   }
-  
+})
+
+app.get('/subbreaddits', async (req, res) => {
+  // query db for all subbreaddits
+  const subbreaddits = await Subbreaddit.findAll()
+  // render subbreaddits template
+  res.render('subbreaddits', { subbreaddits, title: 'subbreaddits' })
 })
 
 app.get('/', (req, res) => {
@@ -24,8 +30,8 @@ app.get('/bananas', (req, res) => {
   res.send('this is bananas, b-a-n-a-n-a-s')
 })
 
-app.all('*', (req, res) => {
-  res.send('this is a catch all route')
-})
+// app.all('*', (req, res) => {
+//   res.send('this is a catch all route')
+// })
 
 app.listen(8000, () => console.log('listening on port 8000, nice!'))
