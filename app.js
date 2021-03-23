@@ -1,10 +1,18 @@
 const express = require('express')
 const app = express()
+const {Post, User} = require('./models')
 
+app.set('view engine', 'pug')
 
-
-app.get('/', (req, res) => {
-  res.send('this is express! whoo!!')
+app.get('/', async (req, res) => {
+  // res.send('this is express! whoo!!')
+  try {
+    const posts = await Post.findAll()
+    res.render('index', {title: 'breaddit', posts: posts})
+  } catch (e) {
+    console.log(e)
+  }
+  
 })
 
 app.get('/', (req, res) => {
