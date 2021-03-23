@@ -26,7 +26,7 @@ module.exports = {
       subbreadditId: 1,
       title: 'bread romance',
       body:
-        'What does a loaf of bread say when breaking up with their       significant other? You deserve butter.',
+        'What does a loaf of bread say when breaking up with their significant other? You deserve butter.',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
