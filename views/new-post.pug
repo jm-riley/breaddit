@@ -6,6 +6,6 @@ block content
     input(placeholder='enter body here' name='body')
     select(name='subbreadditId')
       each sub in subs
-        option(value=sub.id)= sub.name
+        option(value=sub.id) --- #{sub.name} ---
     button(type='submit') create post
         

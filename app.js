@@ -5,6 +5,8 @@ const {Post, User, Subbreaddit} = require('./models')
 
 app.set('view engine', 'pug')
 
+app.use(express.urlencoded({extended: true}))
+
 app.use('/posts', postsRouter)
 
 app.get('/', async (req, res) => {
