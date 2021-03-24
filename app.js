@@ -7,11 +7,43 @@ app.set('view engine', 'pug')
 
 app.use(express.urlencoded({extended: true}))
 
+// console.log(postsRouter.toString())
+const logReqData = (req, res, next) => {
+  // log request path
+  console.log('PATH ----', req.path)
+  // log request method
+  console.log('METHOD ----', req.method)
+  next()
+}
+
+// app.use(logReqData)
+
+app.use((req, res, next) => {
+  console.log('this will be hit second')
+  next()
+})
+
+app.use((req, res, next) => {
+  req.isFunny = true;
+  next()
+})
+
+// app.use((req, res, next) => {
+//   // check to see if user is logged in and authorized
+//   if (authorized) {
+//     next()
+//   } else {
+//     res.redirect('/login')
+//   }
+// })
+
+
 app.use('/posts', postsRouter)
 
-app.get('/', async (req, res) => {
+app.get('/', logReqData, async (req, res) => {
   // res.send('this is express! whoo!!')
-  
+  console.log(req.isFunny)
+  console.log('this is our index route')
   try {
     const posts = await Post.findAll()
     res.render('index', {title: 'breaddit', posts: posts})
@@ -21,7 +53,7 @@ app.get('/', async (req, res) => {
 })
 
 
-app.get('/subbreaddits', async (req, res) => {
+app.get('/subbreaddits', logReqData, async (req, res) => {
   // query db for all subbreaddits
   const subbreaddits = await Subbreaddit.findAll()
   // render subbreaddits template
@@ -45,6 +77,11 @@ app.get('/', (req, res) => {
 
 app.get('/bananas', (req, res) => {
   res.send('this is bananas, b-a-n-a-n-a-s')
+})
+
+app.use((req, res, next) => {
+  console.log('end of the chain')
+  next()
 })
 
 
