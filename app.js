@@ -6,6 +6,7 @@ app.set('view engine', 'pug')
 
 app.get('/', async (req, res) => {
   // res.send('this is express! whoo!!')
+  
   try {
     const posts = await Post.findAll()
     res.render('index', {title: 'breaddit', posts: posts})
@@ -13,6 +14,7 @@ app.get('/', async (req, res) => {
     console.log(e)
   }
 })
+
 
 app.get('/subbreaddits', async (req, res) => {
   // query db for all subbreaddits
@@ -26,6 +28,7 @@ app.get('/subbreaddits/:id', async (req, res) => {
   const sub = await Subbreaddit.findByPk(req.params.id, {
     include: Post
   })
+
   // sub => {id: 1, name: 'jokes', Posts: [{id: 1, body: 'great joke'}]}
   res.render('subbreaddit', {sub})
 })
@@ -38,6 +41,7 @@ app.get('/', (req, res) => {
 app.get('/bananas', (req, res) => {
   res.send('this is bananas, b-a-n-a-n-a-s')
 })
+
 
 // app.all('*', (req, res) => {
 //   res.send('this is a catch all route')

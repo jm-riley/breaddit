@@ -1,12 +1,10 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
-  body
-    h1= sub.name
-    ul
-      each post in sub.Posts
-        li= post.title
+extends layout.pug
+block content
+  h1= sub.name
+  ul
+    each post in sub.Posts
+      li= post.title
+block footer
+  footer
+    div this is our new footer
+    div this is not gonna break
