@@ -1,0 +1,11 @@
+extends layout.pug
+block content
+  h2 create a new post
+  form(action='/posts' method='post')
+    input(placeholder='enter title here' name='title')
+    input(placeholder='enter body here' name='body')
+    select(name='subbreadditId')
+      each sub in subs
+        option(value=sub.id)= sub.name
+    button(type='submit') create post
+        

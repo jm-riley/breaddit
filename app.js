@@ -1,8 +1,11 @@
 const express = require('express')
 const app = express()
+const postsRouter = require('./routes/posts')
 const {Post, User, Subbreaddit} = require('./models')
 
 app.set('view engine', 'pug')
+
+app.use('/posts', postsRouter)
 
 app.get('/', async (req, res) => {
   // res.send('this is express! whoo!!')
