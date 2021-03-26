@@ -1,11 +1,14 @@
 const express = require('express')
 const app = express()
 const postsRouter = require('./routes/posts')
+const cookieParser = require('cookie-parser')
 const {Post, User, Subbreaddit} = require('./models')
 
 app.set('view engine', 'pug')
 
 app.use(express.urlencoded({extended: true}))
+
+app.use(cookieParser())
 
 // console.log(postsRouter.toString())
 const logReqData = (req, res, next) => {

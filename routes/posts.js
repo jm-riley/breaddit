@@ -1,13 +1,16 @@
 const express = require('express')
 const router = express.Router()
+const csrf = require('csurf')
 const {Subbreaddit, Post} = require('../models')
 
-router.get('/new-post', async (req, res) => {
+const csrfProtection = csrf({cookie: true})
+
+router.get('/new', csrfProtection, async (req, res) => {
   const subs = await Subbreaddit.findAll()
-  res.render('new-post', {subs})
+  res.render('new-post', {subs, csrfToken: req.csrfToken()})
 })
 
-router.post('/', async (req, res) => {
+router.post('/', csrfProtection, async (req, res) => {
   console.log('request body', req.body)
 
   const {title, body, subbreadditId} = req.body
